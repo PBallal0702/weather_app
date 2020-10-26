@@ -1,0 +1,22 @@
+import 'package:http/http.dart';
+import 'dart:convert';
+
+class NetWork {
+
+  NetWork({this.url});
+
+  final String url;
+  Future getData()async{
+    Response response = await get(url);
+
+    if(response.statusCode == 200){
+      String data = response.body;
+      var decodedData = jsonDecode(data);
+      return decodedData;
+    }
+    else{
+      print(response.statusCode);
+    }
+  }
+
+}
